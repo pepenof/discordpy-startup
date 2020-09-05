@@ -1,21 +1,33 @@
-from discord.ext import commands
-import os
-import traceback
+import sys
+import random
+import discord
+from googlesearch import search
 
-bot = commands.Bot(command_prefix='/')
+client = disocrd.Client()
 token = os.environ['DISCORD_BOT_TOKEN']
 
+ModeFlag = 0
 
-@bot.event
-async def on_command_error(ctx, error):
-    orig_error = getattr(error, "original", error)
-    error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
-    await ctx.send(error_msg)
-
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
-
-
-bot.run(token)
+@client.event
+async def on_message(message):
+    global ModeFlag
+    if message.author.bot:
+        return
+    if message.content == "/by"
+        await message.channel.send('おｋ')
+        sys.exit()
+    if ModeFlag == 1:
+        kensaku = message.content
+        ModeFlag = 0
+        count = 0
+        for url in search(kensaku, lang="jp",num = 5):
+            await message.channel.send(url)
+            count += 1
+            if(count == 5):
+                break
+    if mesasge.content == '/google':
+        ModeFlag = 1
+        await message.channel.send('検索したいワードを発言してください。')
+            
+    
+client.run(token)
