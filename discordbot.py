@@ -13,21 +13,21 @@ async def on_message(message):
     global ModeFlag
     if message.author.bot:
         return
-    if message.content == "/by"
+    if message.content == '/bye':
         await message.channel.send('おｋ')
         sys.exit()
     if ModeFlag == 1:
         kensaku = message.content
         ModeFlag = 0
         count = 0
-        for url in search(kensaku, lang="jp",num = 5):
+        for url in search(kensaku, lang='jp',num = 5):
             await message.channel.send(url)
             count += 1
             if(count == 5):
                 break
-    if mesasge.content == '/google':
+    if message.content == '/google':
         ModeFlag = 1
-        await message.channel.send('検索したいワードを発言してください。')
+        await message.channel.send('検索ワードを入力して下さい')
             
     
 client.run(token)
